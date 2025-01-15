@@ -1,0 +1,73 @@
+HOW TO GUIDE: Web Scraping Script for Forum Data
+
+
+1. Prerequisites
+Before running this script, ensure you have Python installed on your computer. You will also need to install several Python libraries that the script uses.
+
+
+2. Installing Required Libraries
+for the installation of the required libraries, open a terminal:
+
+pip install requests beautifulsoup4 pandas deep-translator schedule openpyxl
+	requests: Used for making HTTP requests to download web pages.
+	beautifulsoup4: Used for parsing HTML and extracting data.
+	pandas: Used for handling data in DataFrame format and saving it to Excel.
+	deep-translator: Used for translating text.
+	schedule: Used to run the script automatically at scheduled intervals.
+	openpyxl: Used to read and write Excel files.
+
+
+
+3. Understanding the Script Structure
+
+The script consists of several key functions and sections that perform specific tasks:
+
+
+extract_models(text): 								Extracts model names from a given text using regular expressions.
+categorize_model(title, first_post_content): 					Determines which model(s) a forum thread or post is about.
+scrape_forum(url, crawled_urls): 						The main function to scrape data from a forum page.
+scrape_thread(thread_url, thread_title, model, data, headers): 			Scrapes data from individual threads.
+get_first_post_content(thread_url, headers): 					Retrieves the first post content from a thread.
+clean_main_content(bbWrapper): 							Cleans the main content of a post by removing quotes, links, and code blocks.
+translate_text(text): 								Translates text from any language to English using Google Translator.
+save_to_excel(data, model_counts, file_name, model_file_name): 			Saves the scraped data and model counts to Excel files.
+load_crawled_urls(file_name): 							Loads previously crawled URLs to avoid re-scraping them.
+save_crawled_urls(crawled_urls, file_name): 					Saves newly crawled URLs to a file.
+main(): 									The main function that coordinates the scraping process and scheduling.
+
+
+4. Running the Script
+
+
+The script will start scraping the forum specified in the URL (forum_url) and save the data to Excel files. It will also run every 2 hours automatically to check for new data.
+
+5. Modifying the Script
+few parameters that you mifht want to change:
+
+	A. Changing the Forum URL:		To scrape a different forum, change the forum_url variable in the main() function:
+
+				forum_url = 'https://www.new-forum-url.com/forums/example.123/'
+
+	B. Adjusting Scraping Intervals:	To change how often the script runs, modify the line in the main() function that schedules the script:
+	
+				schedule.every(2).hours.do(main)
+				Change 2 to your desired interval.		
+
+	C. Adding a Model:			If you want to add new models or modify the existing model detection:
+
+
+				models_list = [
+				    'iMOW 5 EVO', 'iMOW 6 EVO', 'iMOW 7 EVO',
+				    'iMOW 5', 'iMOW 6', 'iMOW 7', 'iMOW 4',
+				    'iMOW 422', 'iMOW 522', 'iMOW 632',
+				    'iMOW NEW MODEL'  # Add your new model here
+				]
+		
+		Add a corresponding regular expression pattern in model_patterns:
+
+				model_patterns = {
+				    'iMOW 5 EVO': r'\bimow\s*5\s*evo\b',
+				    'iMOW NEW MODEL': r'\bimow\s*new\s*model\b',  # Add pattern here
+				    # Add other patterns as needed
+				}
+

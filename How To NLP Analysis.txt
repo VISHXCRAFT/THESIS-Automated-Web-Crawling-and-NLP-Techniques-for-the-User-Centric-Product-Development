@@ -1,0 +1,64 @@
+How to GUIDE FOR NLP SCRIPT:
+
+1. Setup Requirements
+	Before using the script, ensure you have the necessary Python environment and packages installed.
+
+	Python Installation: Ensure Python is installed on your machine. You can download it from python.org.
+
+	Install Required Packages
+		pip install pandas textblob transformers openpyxl
+
+2. Download Models: (1)zero-shot-classification{facebook/bart-large-mnli} (2)text-classification{j-hartmann/emotion-english-distilroberta-base} 
+
+	The script uses the Hugging Face Transformers library models. The models are automatically downloaded when you run the script for the first time.
+
+
+3. Understanding the Script
+The script is structured into several key components:
+
+Keyword Definitions: 			Define keywords and patterns for various categories (technical issues, countries, iMOW models, and emotions).
+
+Helper Functions:
+	detect_keywords_with_matches: 	Detects keywords in a text and returns matches.
+	detect_keywords: 		Detects keywords in a text.
+	categorize_comments: 		Main function that processes each comment and categorizes it based on various criteria.
+
+Data Processing:
+	process_new_data: 		Reads new data from the Excel file(updated Web crawled file), processes it, and saves the output(appends it)
+	Main Function: 			Runs the script periodically every 2 hours to process new data.
+
+A. Updating Keywords and Categories
+
+
+technical_keywords, Countries, iMOW Models, Emotion Keywords: You can add the keywords to and their itereations as we added models in Web Crawling(Check How to for Web Crawling)
+
+B. Adjusting Batch Size
+
+"The batch size controls how many comments are processed at once, which can impact performance."
+
+	To adjust the batch size, modify the batch_size variable in the categorize_comments function:
+		
+			batch_size = 8  # Increase or decrease based on your system's capabilities
+
+
+C. Modifying Sentiment and Emotion Analysis
+Sentiment Analysis: Adjust thresholds for sentiment classification within the categorize_comments function. Modify the sentiment polarity thresholds:
+
+if sentiment < -0.1:
+    sentiment_label = "negative"
+elif sentiment > 0.1:
+    sentiment_label = "positive"
+
+Emotion Analysis: The emotion detection uses the Hugging Face Transformers library. If you want to change the model or adjust its output, modify the emotion_pipeline initialization:
+
+		emotion_pipeline = pipeline('text-classification', model='j-hartmann/emotion-english-distilroberta-base', top_k=None)
+
+
+Normal Issue that could be faced and their troubleshooting:
+
+PermissionError: If you see a PermissionError, ensure that the Excel file is not open in any application.
+
+Memory Issues: If your system runs out of memory, consider reducing the batch_size or upgrading your system's RAM.
+
+Python Environment Issues: If you encounter issues with missing packages or incorrect versions, create a new Python environment and reinstall the required packages.
+

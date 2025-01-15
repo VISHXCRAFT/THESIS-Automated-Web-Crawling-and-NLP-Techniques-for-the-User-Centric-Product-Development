@@ -30,7 +30,9 @@ This repository contains the code and resources related to my Master's thesis, w
       The script is set to run continuously in the background, checking for new data every 2 hours, and appending the categorized results        to the output file.
 
 **Technologies Used:**
+
 Python: The core language for the script.
+
 Libraries:
 **Pandas**: For data manipulation and Excel file handling.
 **TextBlob**: For sentiment analysis.

@@ -2,6 +2,8 @@
 Repository Description for Thesis:
 Title: Automated Web Crawling and NLP Techniques for the User-Centered Product Development
 
+![Dashboard Overview](https://github.com/user-attachments/assets/fcdb530d-3808-4fa1-a959-f63969c7a0cf)
+
 **Overview:**
 This repository contains the code and resources related to my Master's thesis, which focuses on automated web crawling and the application of natural language processing (NLP) techniques to gather and analyze user-generated data from social media platforms. The primary goal of this research was to derive actionable insights that can inform product development, marketing strategies, and customer engagement for user-centered businesses.
 

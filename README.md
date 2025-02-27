@@ -32,7 +32,7 @@ This repository contains the code and resources related to my Master's thesis, w
 5)  Automated Execution:
       The script is set to run continuously in the background, checking for new data every 2 hours, and appending the categorized results        to the output file.
 
-![Screenshot 2025-02-27 105222](https://github.com/user-attachments/assets/7634cc70-ee3c-4c22-92f1-25563da2e873)
+      ![Screenshot 2025-02-27 105222](https://github.com/user-attachments/assets/7634cc70-ee3c-4c22-92f1-25563da2e873)
 
 **Technologies Used:**
 
